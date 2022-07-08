@@ -3,6 +3,7 @@ package com.devexperto.movietrailerstv.ui.main
 import android.view.ViewGroup
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
+import com.devexperto.movietrailerstv.domain.Movie
 import com.devexperto.movietrailerstv.loadUrl
 
 class CardPresenter : Presenter() {
@@ -22,7 +23,7 @@ class CardPresenter : Presenter() {
         val movie = item as Movie
         with(viewHolder.view as ImageCardView) {
             titleText = movie.title
-            contentText = movie.year.toString()
+            contentText = movie.releaseDate
             mainImageView.loadUrl(movie.poster)
         }
 

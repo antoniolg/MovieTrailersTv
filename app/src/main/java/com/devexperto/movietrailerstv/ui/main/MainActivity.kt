@@ -1,7 +1,8 @@
-package com.devexperto.movietrailerstv
+package com.devexperto.movietrailerstv.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.devexperto.movietrailerstv.R
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

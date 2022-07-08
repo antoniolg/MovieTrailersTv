@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devexperto.movietrailerstv">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-feature android:name="android.software.leanback" />
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -15,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieTrailersTv">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

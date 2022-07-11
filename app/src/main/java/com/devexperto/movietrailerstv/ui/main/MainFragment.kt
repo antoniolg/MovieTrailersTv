@@ -3,6 +3,7 @@ package com.devexperto.movietrailerstv.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
 import androidx.lifecycle.lifecycleScope
@@ -31,11 +32,17 @@ class MainFragment : BrowseSupportFragment() {
         }
 
         onItemViewClickedListener =
-            OnItemViewClickedListener { _, movie, _, _ ->
+            OnItemViewClickedListener { vh, movie, _, _ ->
+                val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    requireActivity(),
+                    (vh.view as ImageCardView).mainImageView,
+                    DetailActivity.SHARED_ELEMENT_NAME
+                ).toBundle()
+
                 val intent = Intent(requireContext(), DetailActivity::class.java).apply {
                     putExtra(DetailActivity.MOVIE_EXTRA, movie as Movie)
                 }
-                startActivity(intent)
+                startActivity(intent, bundle)
             }
 
         onItemViewSelectedListener = OnItemViewSelectedListener { _, movie, _, _ ->

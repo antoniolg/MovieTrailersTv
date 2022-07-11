@@ -7,19 +7,29 @@ import androidx.leanback.widget.ArrayObjectAdapter
 import androidx.leanback.widget.DetailsOverviewRow
 import androidx.leanback.widget.FullWidthDetailsOverviewRowPresenter
 import com.devexperto.movietrailerstv.domain.Movie
+import com.devexperto.movietrailerstv.ui.common.loadImageUrl
 
 class DetailFragment : DetailsSupportFragment() {
+
+    private lateinit var rowsAdapter: ArrayObjectAdapter
+    private val detailsBackgroundState = DetailsBackgroundState(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val movie = requireActivity().intent.getParcelableExtra<Movie>(DetailActivity.MOVIE_EXTRA)
+            ?: throw IllegalStateException("Movie not found")
 
         val presenter = FullWidthDetailsOverviewRowPresenter(DetailsDescriptionPresenter())
+        rowsAdapter = ArrayObjectAdapter(presenter)
 
-        val rowsAdapter = ArrayObjectAdapter(presenter)
-        rowsAdapter.add(DetailsOverviewRow(movie))
+        val row = DetailsOverviewRow(movie)
+        row.loadImageUrl(requireContext(), movie.poster)
+
+        rowsAdapter.add(row)
 
         adapter = rowsAdapter
+
+        detailsBackgroundState.loadUrl(movie.backdrop)
     }
 }

@@ -1,5 +1,6 @@
 package com.devexperto.movietrailerstv.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.leanback.app.BrowseSupportFragment
@@ -7,6 +8,8 @@ import androidx.leanback.widget.*
 import androidx.lifecycle.lifecycleScope
 import com.devexperto.movietrailerstv.R
 import com.devexperto.movietrailerstv.data.repository.MoviesRepository
+import com.devexperto.movietrailerstv.domain.Movie
+import com.devexperto.movietrailerstv.ui.detail.DetailActivity
 import kotlinx.coroutines.launch
 
 class MainFragment : BrowseSupportFragment() {
@@ -24,6 +27,14 @@ class MainFragment : BrowseSupportFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter = buildAdapter()
         }
+
+        onItemViewClickedListener =
+            OnItemViewClickedListener { _, movie: Any?, _, _ ->
+                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.MOVIE_EXTRA, movie as Movie)
+                }
+                startActivity(intent)
+            }
     }
 
     private suspend fun buildAdapter(): ArrayObjectAdapter {

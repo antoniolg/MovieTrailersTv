@@ -1,4 +1,4 @@
-package com.devexperto.movietrailerstv
+package com.devexperto.movietrailerstv.ui.common
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

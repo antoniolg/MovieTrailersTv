@@ -30,5 +30,6 @@ data class RemoteMovie(
 fun RemoteMovie.toDomain() = Movie(
     title,
     releaseDate,
+    overview,
     "https://image.tmdb.org/t/p/w185/$posterPath"
 )

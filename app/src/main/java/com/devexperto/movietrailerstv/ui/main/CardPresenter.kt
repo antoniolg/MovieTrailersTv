@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
 import com.devexperto.movietrailerstv.domain.Movie
-import com.devexperto.movietrailerstv.loadUrl
+import com.devexperto.movietrailerstv.ui.common.loadUrl
 
 class CardPresenter : Presenter() {
 

@@ -17,6 +17,7 @@ class BackgroundState(private val fragment: Fragment) {
         val activity = fragment.requireActivity()
         BackgroundManager.getInstance(activity).apply {
             attach(activity.window)
+            isAutoReleaseOnStop = false
         }
     }
 
